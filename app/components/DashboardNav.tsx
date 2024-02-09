@@ -27,7 +27,7 @@ export default function DashboardNav() {
             {navItems.map((item, index) => (
                 <Link key={index} href={item.href}>
                     <span className={cn("group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent")}>
-                        <item.icon className="mr-2 h-4 w-4" />
+                        <item.icon className="mr-2 h-4 w-4 text-orange-600" />
                         <span>{item.name}</span>
                     </span>
                 </Link>
