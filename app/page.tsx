@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { Themetoggle } from "./components/Themetoggle";
 
 export default function Home() {
   return (
-    <h1>Hello Merlin</h1>
+  <Themetoggle/>
   );
 }
