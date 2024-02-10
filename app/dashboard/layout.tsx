@@ -2,7 +2,36 @@ import { ReactNode } from "react";
 import DashboardNav from "../components/DashboardNav";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import prisma from "../lib/db";
 
+async function getData({ email, id, firstName, lastName, profileImage }: {
+    email: string;
+    id: string;
+    firstName: string | undefined | null;
+    lastName: string | undefined | null;
+    profileImage: string | undefined | null
+}) {
+    const user = await prisma.user.findUnique({
+        where: {
+            id: id,
+        },
+        select: {
+            id: true,
+            stripeCustomerId: true,
+        }
+    })
+
+    if (!user) {
+        const name = `${firstName ?? ''} ${lastName ?? ''}`
+        await prisma.user.create({
+            data: {
+                id: id,
+                email: email,
+                name: name,
+            }
+        })
+    }
+}
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
 
