@@ -1,8 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { SubmitButton } from "@/app/components/SubmitButton";
 async function getData(userId: string) {
     const data = await prisma?.user.findUnique({
         where: {
@@ -24,6 +26,24 @@ export default async function SettingPage() {
     const data = await getData(user?.id as string);
 
 
+    async function postData(formData: FormData) {
+        "use server";
+        const name = formData.get('name') as string;
+        const colorScheme = formData.get('color') as string;
+
+        await prisma?.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                name: name ?? undefined,
+                colorScheme: colorScheme ?? undefined,
+
+            }
+        })
+    }
+
+
     return (
         <div className="grid items-start gap-8">
             <div className="flex items-center justify-between px-2">
@@ -36,7 +56,7 @@ export default async function SettingPage() {
                 </div>
             </div>
             <Card>
-                <form>
+                <form action={postData}>
                     <CardHeader>
                         <CardTitle>General data</CardTitle>
                         <CardDescription>
@@ -70,17 +90,20 @@ export default async function SettingPage() {
                                             </SelectLabel> */}
                                             <SelectItem value="theme-green">Green</SelectItem>
                                             <SelectItem value="theme-blue">Blue</SelectItem>
-                                            <SelectItem value="theme-red">Green</SelectItem>
                                             <SelectItem value="theme-violet">Violet</SelectItem>
-                                            <SelectItem value="theme-purple">Purple</SelectItem>
-                                            <SelectItem value="theme-orange">Orange</SelectItem>
                                             <SelectItem value="theme-yellow">Yellow</SelectItem>
+                                            <SelectItem value="theme-orange">Orange</SelectItem>
+                                            <SelectItem value="theme-red">Red</SelectItem>
+                                            <SelectItem value="theme-rose">Rose</SelectItem>
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
                             </div>
                         </div>
                     </CardContent>
+                    <CardFooter>
+                        <SubmitButton />
+                    </CardFooter>
                 </form>
             </Card>
         </div>
