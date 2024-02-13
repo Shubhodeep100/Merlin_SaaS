@@ -5,6 +5,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { SubmitButton } from "@/app/components/SubmitButton";
+import { revalidatePath } from "next/cache";
 async function getData(userId: string) {
     const data = await prisma?.user.findUnique({
         where: {
@@ -41,6 +42,8 @@ export default async function SettingPage() {
 
             }
         })
+
+        revalidatePath('/', 'layout')
     }
 
 
