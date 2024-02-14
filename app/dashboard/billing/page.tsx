@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 
@@ -39,6 +40,11 @@ export default function BillingPage() {
                             </li>
                         ))}
                     </ul>
+                    <form className="w-full">
+                        <Button className="w-full">
+                            Buy Now
+                        </Button>
+                    </form>
                 </div>
             </Card>
         </div>
