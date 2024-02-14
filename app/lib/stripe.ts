@@ -14,16 +14,18 @@ export const getStripeSession = async ({
   domainUrl: string;
   customerId: string;
 }) => {
-
-    const session = await stripe.checkout.sessions.create({
-        customer: customerId,
-        mode: 'subscription',
-        billing_address_collection: 'auto',
-        line_items: [{price: priceId, quantity: 1}],
-        payment_method_types: ['card'],
-        customer_update: {
-            address: 'auto',
-            name: "auto",    
-        }
-    })
+  const session = await stripe.checkout.sessions.create({
+    customer: customerId,
+    mode: "subscription",
+    billing_address_collection: "auto",
+    line_items: [{ price: priceId, quantity: 1 }],
+    payment_method_types: ["card"],
+    customer_update: {
+      address: "auto",
+      name: "auto",
+    },
+    success_url: `${domainUrl}/payment/success`,
+    cancel_url: `${domainUrl}/payment/cancelled`,
+  });
+  return session.url as string;
 };
