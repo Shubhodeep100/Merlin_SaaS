@@ -3,6 +3,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import prisma from "@/app/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getStripeSession } from "@/app/lib/stripe";
+import { redirect } from "next/navigation";
+import { StripeSubscriptionCreationButton } from "@/app/components/Submitbutton";
+
 
 
 
@@ -37,6 +41,32 @@ export default async function BillingPage() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
     const data = await getData(user?.id as string)
+    async function createSubscription() {
+        "use server";
+
+        const dbUser = await prisma.user.findUnique({
+            where: {
+                id: user?.id,
+            },
+            select: {
+                stripeCustomerId: true,
+            },
+        })
+
+
+
+        if (!dbUser?.stripeCustomerId) {
+            throw new Error("Unable to get customer id");
+        }
+
+        const subscriptionUrl = await getStripeSession({
+            customerId: dbUser.stripeCustomerId,
+            domainUrl: 'http://localhost:3000',
+            priceId: process.env.STRIPE_PRICE_ID as string,
+        });
+
+        return redirect(subscriptionUrl);
+    }
     return (
         <div className="max-w-md mx-auto space-y-4">
             <Card className="flex flex-col">
@@ -62,10 +92,8 @@ export default async function BillingPage() {
                             </li>
                         ))}
                     </ul>
-                    <form className="w-full">
-                        <Button className="w-full">
-                            Buy Now
-                        </Button>
+                    <form className="w-full" action={createSubscription}>
+                        <StripeSubscriptionCreationButton />
                     </form>
                 </div>
             </Card>

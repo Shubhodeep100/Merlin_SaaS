@@ -16,3 +16,20 @@ export function SubmitButton() {
         </div>
     )
 }
+
+export function StripeSubscriptionCreationButton() {
+    const { pending } = useFormStatus();
+    return (
+        <>
+            {pending ? (
+                <Button disabled className="w-full"> <Loader2Icon className="mr-2 w-4 h-4 animate-spin" />Please Wait</Button>
+            ) : (
+
+                <Button className="w-full" type="submit">
+                    Create Subscription
+                </Button>
+
+            )}
+        </>
+    )
+}
