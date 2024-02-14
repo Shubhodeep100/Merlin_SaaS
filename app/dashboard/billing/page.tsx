@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import prisma from "@/app/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 
 
@@ -32,7 +33,10 @@ async function getData(userId: string) {
     return data
 }
 
-export default function BillingPage() {
+export default async function BillingPage() {
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+    const data = await getData(user?.id as string)
     return (
         <div className="max-w-md mx-auto space-y-4">
             <Card className="flex flex-col">
