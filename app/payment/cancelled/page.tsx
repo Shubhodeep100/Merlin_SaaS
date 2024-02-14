@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { XIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function CancelledRoute() {
     return (
@@ -14,6 +16,18 @@ export default function CancelledRoute() {
                             <h3 className="text-lg leading-6 font-medium">
                                 Payment failed!
                             </h3>
+                            <div className="mt-2">
+                                <p className="text-sm text-muted-foreground">
+                                    No worries, You wont be charged. You can try again.
+                                </p>
+                            </div>
+                            <div className="mt-5 sm:mt-6 w-full">
+                                <Button className="w-full hover:bg-gray-500" asChild>
+                                    <Link href="/">
+                                        Go back to Dashboard
+                                    </Link>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
