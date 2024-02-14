@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
-
+import prisma from "@/app/lib/db";
 
 
 
@@ -14,8 +14,22 @@ const featureItems = [
     { name: 'Lorem ipsum something' },
     { name: 'Lorem ipsum something' },
 ];
-async function getData() {
-const data  = await.prisma.subs
+async function getData(userId: string) {
+    const data = await prisma.subscription.findUnique({
+        where: {
+            userId: userId,
+        },
+        select: {
+            status: true,
+            user: {
+                select: {
+                    stripeCustomerId: true,
+                }
+            }
+        }
+
+    })
+    return data
 }
 
 export default function BillingPage() {
