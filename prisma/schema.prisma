@@ -4,14 +4,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-
-
 
 model User {
   id               String  @id @unique
@@ -19,4 +16,15 @@ model User {
   email            String  @unique
   stripeCustomerId String? @unique
   colorScheme      String  @default("theme-orange")
+}
+
+model Subscription {
+  stripeSubscription String   @id @unique
+  interval           String
+  status             String
+  planId             String
+  currentPeriodStart Int
+  currentPeriodEnd   Int
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }

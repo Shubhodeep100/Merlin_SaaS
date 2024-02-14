@@ -13,7 +13,11 @@ const featureItems = [
     { name: 'Lorem ipsum something' },
     { name: 'Lorem ipsum something' },
     { name: 'Lorem ipsum something' },
-]
+];
+async function getData() {
+const data  = await.prisma.subs
+}
+
 export default function BillingPage() {
     return (
         <div className="max-w-md mx-auto space-y-4">
