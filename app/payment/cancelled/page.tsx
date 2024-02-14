@@ -7,27 +7,25 @@ export default function CancelledRoute() {
     return (
         <div className="w-full min-h-[80vh] flex items-center justify-center">
             <Card className="w-[350px]">
-                <div className="w-[350px]">
-                    <div className="p-6">
-                        <div className="w-full flex justify-center">
-                            <XIcon className="cursor-pointer rounded-full bg-red-500/30 text-red-500 w-12 h-12" />
+                <div className="p-6">
+                    <div className="w-full flex justify-center">
+                        <XIcon className="cursor-pointer rounded-full bg-red-500/30 text-red-500 w-12 h-12" />
+                    </div>
+                    <div className="mt-3 text-center sm:mt-5 w-full">
+                        <h3 className="text-lg leading-6 font-medium">
+                            Payment failed!
+                        </h3>
+                        <div className="mt-2">
+                            <p className="text-sm text-muted-foreground">
+                                No worries, You wont be charged. You can try again.
+                            </p>
                         </div>
-                        <div className="mt-3 text-center sm:mt-5 w-full">
-                            <h3 className="text-lg leading-6 font-medium">
-                                Payment failed!
-                            </h3>
-                            <div className="mt-2">
-                                <p className="text-sm text-muted-foreground">
-                                    No worries, You wont be charged. You can try again.
-                                </p>
-                            </div>
-                            <div className="mt-5 sm:mt-6 w-full">
-                                <Button className="w-full hover:bg-gray-500" asChild>
-                                    <Link href="/">
-                                        Go back to Dashboard
-                                    </Link>
-                                </Button>
-                            </div>
+                        <div className="mt-5 sm:mt-6 w-full">
+                            <Button className="w-full hover:bg-gray-500" asChild>
+                                <Link href="/">
+                                    Go back to Dashboard
+                                </Link>
+                            </Button>
                         </div>
                     </div>
                 </div>
