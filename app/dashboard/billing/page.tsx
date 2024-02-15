@@ -7,9 +7,6 @@ import { getStripeSession, stripe } from "@/app/lib/stripe";
 import { redirect } from "next/navigation";
 import { StripeSubscriptionCreationButton } from "@/app/components/Submitbutton";
 
-
-
-
 const featureItems = [
 
     { name: 'Lorem ipsum something' },
@@ -52,8 +49,6 @@ export default async function BillingPage() {
                 stripeCustomerId: true,
             },
         })
-
-
 
         if (!dbUser?.stripeCustomerId) {
             throw new Error("Unable to get customer id");
