@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { CheckCircle2 } from "lucide-react";
 import prisma from "@/app/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { getStripeSession } from "@/app/lib/stripe";
+import { getStripeSession, stripe } from "@/app/lib/stripe";
 import { redirect } from "next/navigation";
 import { StripeSubscriptionCreationButton } from "@/app/components/Submitbutton";
 
@@ -66,6 +66,15 @@ export default async function BillingPage() {
         });
 
         return redirect(subscriptionUrl);
+    }
+    async function createCustomerPortal() {
+        "use server"
+        const session = await stripe.billingPortal.sessions.create({
+            customer: data?.user.stripeCustomerId as string,
+            return_url: "http://localhost:3000/dashboard",
+        });
+
+        return redirect(session.url)
     }
 
     if (data?.status === 'active') {
