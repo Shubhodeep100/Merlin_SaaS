@@ -95,7 +95,7 @@ export default async function BillingPage() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <form>
+                        <form action={createCustomerPortal}>
                             <Button>
                                 Launch Portal
                             </Button>
