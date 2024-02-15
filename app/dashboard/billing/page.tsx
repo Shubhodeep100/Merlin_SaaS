@@ -85,6 +85,13 @@ export default async function BillingPage() {
                             Click on the button below, this will give you the opportunity to change your payment details and veiw your statement at the same time.
                         </CardDescription>
                     </CardHeader>
+                    <CardContent>
+                        <form>
+                            <Button>
+                                Launch Portal
+                            </Button>
+                        </form>
+                    </CardContent>
                 </Card>
             </div>
         )
