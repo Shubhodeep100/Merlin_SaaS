@@ -1,6 +1,7 @@
 import { stripe } from "@/app/lib/stripe";
 import { headers } from "next/headers";
 import Stripe from "stripe";
+import prisma from "@/app/lib/db";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -24,5 +25,25 @@ export async function POST(req: Request) {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string
     );
+
+    const customerId = String(session.customer);
+    const user = await prisma.user.findUnique({
+      where: {
+        stripeCustomerId: customerId,
+      },
+    });
+    if (!user) throw new Error("User not found...");
+
+    await prisma.subscription.create({
+      data: {
+        stripeSubscription: subscription.id,
+        userId: user.id,
+        currentPeriodStart: subscription.current_period_start,
+        currentPeriodEnd: subscription.current_period_end,
+        status: subscription.status,
+        planId: subscription.items.data[0].plan.id,
+        interval: String(subscription.items.data[0].plan.interval),
+      },
+    });
   }
 }
