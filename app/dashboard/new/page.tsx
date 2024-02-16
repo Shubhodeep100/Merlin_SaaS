@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import prisma from "@/app/lib/db";
 import { getUser } from "@kinde-oss/kinde-auth-nextjs/dist/types/session/getUser";
+import { error } from "console";
+import { redirect } from "next/navigation";
 
 
 export default async function NewNoteRoute() {
@@ -17,6 +19,9 @@ export default async function NewNoteRoute() {
 
     async function postData(formData: FormData) {
         "use server"
+        if (!user) {
+            throw new Error('Not authorized');
+        }
         const title = formData.get("title") as string
         const description = formData.get("description") as string
 
@@ -27,13 +32,14 @@ export default async function NewNoteRoute() {
                 title: title,
             }
         })
+        return redirect('/dashboard')
     }
 
 
     return (
 
         <Card>
-            <form>
+            <form action={postData}>
                 <CardHeader>
                     <CardTitle>
                         New Note
