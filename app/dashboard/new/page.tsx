@@ -3,15 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import prisma from "@/app/lib/db";
+import { getUser } from "@kinde-oss/kinde-auth-nextjs/dist/types/session/getUser";
 
-export default function NewNoteRoute() {
+
+export default async function NewNoteRoute() {
+
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
 
     async function postData(formData: FormData) {
         "use server"
         const title = formData.get("title") as string
         const description = formData.get("description") as string
+
+        await prisma.note.create({
+            data: {
+                userId: user?.id,
+                description: description,
+                title: title,
+            }
+        })
     }
 
 
