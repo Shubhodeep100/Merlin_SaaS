@@ -1,5 +1,19 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import prisma from "../lib/db";
+
+async function getData(userId: string) {
+    const data = await prisma.note.findMany({
+        where: {
+            userId: userId
+        },
+        orderBy: {
+            createdAt: 'desc',
+        },
+    })
+
+    return data;
+}
 
 export default function DashboardPage() {
     return (
