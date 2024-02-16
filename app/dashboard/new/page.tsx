@@ -7,6 +7,14 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 
 export default function NewNoteRoute() {
+
+    async function postData(formData: FormData) {
+        "use server"
+        const title = formData.get("title") as string
+        const description = formData.get("description") as string
+    }
+
+
     return (
 
         <Card>
@@ -34,7 +42,7 @@ export default function NewNoteRoute() {
                         <Link href="/dashboard">cancel</Link>
                     </Button>
 
-                    <SubmitButton/>
+                    <SubmitButton />
                 </CardFooter>
             </form>
         </Card>
