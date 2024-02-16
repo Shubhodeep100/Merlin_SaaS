@@ -1,6 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SubmitButton } from "@/app/components/Submitbutton";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
 
 export default function NewNoteRoute() {
     return (
@@ -22,9 +26,16 @@ export default function NewNoteRoute() {
                     </div>
                     <div className="flex flex-col gap-y-2">
                         <Label>Description</Label>
-                        
+                        <Textarea name="description" placeholder="Describe your note as you want." required />
                     </div>
                 </CardContent>
+                <CardFooter className="flex justify-between">
+                    <Button asChild variant="destructive">
+                        <Link href="/dashboard">cancel</Link>
+                    </Button>
+
+                    <SubmitButton/>
+                </CardFooter>
             </form>
         </Card>
     )
