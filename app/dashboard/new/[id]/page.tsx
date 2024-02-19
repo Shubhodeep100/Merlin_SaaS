@@ -31,6 +31,9 @@ export default async function DynamicRoute({ params, }: { params: { id: string }
         "use server"
         if (!user) throw new Error("You are not allowed")
 
+        const title = formData.get('title') as string
+        const decription = formData.get('description') as string
+
     }
     return (
         <Card>
