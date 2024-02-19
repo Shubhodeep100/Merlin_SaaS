@@ -3,6 +3,7 @@ import Link from "next/link";
 import prisma from "../lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { File } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 async function getData(userId: string) {
     const data = await prisma.note.findMany({
@@ -49,8 +50,16 @@ export default async function DashboardPage() {
                 </div>
 
             ) : (
-                <div>
-                  
+                <div className="flex flex-col gap-y-4">
+                    {
+                        data.map((item) => (
+                            <Card key={item.id} className="flex items-center justify-between p-4">
+                                <div>
+                                    <h2 className="font-semibold text-xl text-primary">{item.title}</h2>
+                                </div>
+                            </Card>
+                        ))
+                    }
                 </div>
             )}
         </div>
