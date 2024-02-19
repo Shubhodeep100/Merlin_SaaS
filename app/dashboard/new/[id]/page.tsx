@@ -7,6 +7,8 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import prisma from "@/app/lib/db"
+import { redirect } from "next/navigation";
+
 
 async function getData({ userId, noteId }: { userId: string, noteId: string }) {
     const data = await prisma.note.findUnique({
@@ -32,12 +34,23 @@ export default async function DynamicRoute({ params, }: { params: { id: string }
         if (!user) throw new Error("You are not allowed")
 
         const title = formData.get('title') as string
-        const decription = formData.get('description') as string
+        const description = formData.get('description') as string
 
+        await prisma.note.update({
+            where: {
+                id: data?.id,
+                userId: user.id
+            },
+            data: {
+                description: description,
+                title: title,
+            }
+        })
+        return redirect("/dashboard")
     }
     return (
         <Card>
-            <form>
+            <form action={postData}>
                 <CardHeader>
                     <CardTitle>Edit Note</CardTitle>
                     <CardDescription>
