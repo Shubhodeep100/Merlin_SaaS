@@ -27,6 +27,11 @@ export default async function DynamicRoute({ params, }: { params: { id: string }
     const user = await getUser()
     const data = await getData({ userId: user?.id as string, noteId: params.id })
 
+    async function postData(formData: FormData) {
+        "use server"
+        if (!user) throw new Error("You are not allowed")
+
+    }
     return (
         <Card>
             <form>
