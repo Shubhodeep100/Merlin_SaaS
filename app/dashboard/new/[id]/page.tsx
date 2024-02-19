@@ -54,6 +54,7 @@ export default async function DynamicRoute({ params, }: { params: { id: string }
                             name="description"
                             placeholder="Describe your note as you want"
                             required
+                            defaultValue={data?.description}
                         />
                     </div>
                 </CardContent>
