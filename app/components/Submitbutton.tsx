@@ -50,7 +50,7 @@ export function TrashDelete() {
     return (
         <>
             {pending ? (<Button variant="destructive" size="icon">
-                <Loader2 className="h-4 w-4" />
+                <Loader2 className="h-4 w-4 animate-spin" />
             </Button>) : (<Button variant="destructive" size="icon">
                 <Trash className="h-4 w-4" />
             </Button >)}
