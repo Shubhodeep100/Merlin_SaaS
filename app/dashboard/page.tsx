@@ -80,7 +80,7 @@ export default async function DashboardPage() {
                                             <Edit className="w-4 h-4" />
                                         </Button>
                                     </Link>
-                                    <form>
+                                    <form action={deleteNote}>
                                         <input type="hidden" name="noteId" value={item.id} />
                                         <Button variant="destructive" size="icon">
                                             <Trash className="h-4 w-4" />
