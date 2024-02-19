@@ -44,6 +44,7 @@ export default async function DynamicRoute({ params, }: { params: { id: string }
                             type="text"
                             name="title"
                             placeholder="Title for your note"
+                            defaultValue={data?.title}
                         />
                     </div>
 
