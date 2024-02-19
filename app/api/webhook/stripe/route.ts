@@ -5,6 +5,7 @@ import prisma from "@/app/lib/db";
 
 export async function POST(req: Request) {
   const body = await req.text();
+
   const signature = headers().get("Stripe-Signature") as string;
 
   let event: Stripe.Event;
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET as string
     );
-  } catch (error) {
+  } catch (error: unknown) {
     return new Response("webhook error", { status: 400 });
   }
 
@@ -25,18 +26,19 @@ export async function POST(req: Request) {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string
     );
-
     const customerId = String(session.customer);
+
     const user = await prisma.user.findUnique({
       where: {
         stripeCustomerId: customerId,
       },
     });
+
     if (!user) throw new Error("User not found...");
 
     await prisma.subscription.create({
       data: {
-        stripeSubscription: subscription.id,
+        stripeSubscriptionId: subscription.id,
         userId: user.id,
         currentPeriodStart: subscription.current_period_start,
         currentPeriodEnd: subscription.current_period_end,
@@ -51,9 +53,10 @@ export async function POST(req: Request) {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string
     );
+
     await prisma.subscription.update({
       where: {
-        stripeSubscription: subscription.id,
+        stripeSubscriptionId: subscription.id,
       },
       data: {
         planId: subscription.items.data[0].price.id,
