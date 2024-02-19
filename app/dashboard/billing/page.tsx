@@ -9,12 +9,11 @@ import { StripeSubscriptionCreationButton } from "@/app/components/Submitbutton"
 
 const featureItems = [
 
-    { name: 'Lorem ipsum something' },
-    { name: 'Lorem ipsum something' },
-    { name: 'Lorem ipsum something' },
-    { name: 'Lorem ipsum something' },
-    { name: 'Lorem ipsum something' },
-    { name: 'Lorem ipsum something' },
+    { name: 'A cool feature' },
+    { name: 'A top feature with limitation' },
+    { name: 'A basic feature' },
+    { name: 'An incredible feature so useful' },
+    { name: 'A top feature' },
 ];
 async function getData(userId: string) {
     const data = await prisma.subscription.findUnique({
