@@ -27,6 +27,13 @@ export default async function DashboardPage() {
     async function deleteNote(formData: FormData) {
         "use server";
 
+        const noteId = formData.get("noteId") as string;
+        await prisma.note.delete({
+            where: {
+                id: noteId,
+            },
+        })
+
     }
 
     return (
