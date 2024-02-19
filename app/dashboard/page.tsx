@@ -4,6 +4,7 @@ import prisma from "../lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Edit, File, Trash } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { revalidatePath } from "next/cache";
 
 async function getData(userId: string) {
     const data = await prisma.note.findMany({
@@ -32,7 +33,9 @@ export default async function DashboardPage() {
             where: {
                 id: noteId,
             },
-        })
+        });
+
+        revalidatePath('/dashboard')
 
     }
 
