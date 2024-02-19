@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import prisma from "@/app/lib/db"
@@ -21,7 +22,11 @@ async function getData({ userId, noteId }: { userId: string, noteId: string }) {
     })
     return data;
 }
-export default function DynamicRoute() {
+export default async function DynamicRoute({ params, }: { params: { id: string }; }) {
+    const { getUser } = getKindeServerSession()
+    const user = await getUser()
+    const data = await getData({ userId: user?.id as string, noteId: params.id })
+
     return (
         <Card>
             <form>
