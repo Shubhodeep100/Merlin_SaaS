@@ -7,13 +7,19 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import prisma from "@/app/lib/db"
 
-async function getData({userId, noteId} : {userId: string, noteId: string}) {
+async function getData({ userId, noteId }: { userId: string, noteId: string }) {
     const data = await prisma.note.findUnique({
         where: {
-            id: '',
-            userId: '',
+            id: noteId,
+            userId: userId,
+        },
+        select: {
+            title: true,
+            description: true,
+            id: true,
         }
     })
+    return data;
 }
 export default function DynamicRoute() {
     return (
