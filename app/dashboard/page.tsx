@@ -34,24 +34,23 @@ export default async function DashboardPage() {
                 </div>
                 <Button asChild>
                     <Link href="/dashboard/new">
-                        Create a new note.
+                        Create a new note
                     </Link>
                 </Button>
-
-
             </div>
+
             {data.length < 1 ? (
                 <div className="flex min-h-[400px] flex-col items-center justify-center rounded-md border border-dashed p-8 text-center animate-in fade-in-50">
 
                     <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10"><File className="w-10 h-10 text-primary" /></div>
                     <h2 className="mt-6 text-xl font-semibold">You dont have any notes created.</h2>
-                    <p className="mb-8 mt-2 text-center text-sm leading-6 text-muted-foreground max-w-sm mx-auto">You currentlt dont have any notes. Please create some so that you see them right here.Can see them right here.</p>
-                    <Button><Link href="/dashboard/new">Create a new Note.</Link></Button>
+                    <p className="mb-8 mt-2 text-center text-sm leading-6 text-muted-foreground max-w-sm mx-auto">You currently dont have any notes. Please create some so that you see them right here.Can see them right here.</p>
+                    <Button asChild><Link href="/dashboard/new">Create a new Note</Link></Button>
                 </div>
 
             ) : (
                 <div>
-
+                  
                 </div>
             )}
         </div>
