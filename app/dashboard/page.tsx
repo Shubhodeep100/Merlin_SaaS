@@ -24,6 +24,11 @@ export default async function DashboardPage() {
     const user = await getUser();
     const data = await getData(user?.id as string);
 
+    async function deleteNote(formData: FormData) {
+        "use server";
+
+    }
+
     return (
         <div className="grid items-start gap-y-8">
             <div className="flex items-center justify-between px-2">
@@ -69,6 +74,7 @@ export default async function DashboardPage() {
                                         </Button>
                                     </Link>
                                     <form>
+                                        <input type="hidden" name="noteId" value={item.id} />
                                         <Button variant="destructive" size="icon">
                                             <Trash className="h-4 w-4" />
                                         </Button>

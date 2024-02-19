@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import prisma from "@/app/lib/db"
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 
 async function getData({ userId, noteId }: { userId: string, noteId: string }) {
@@ -46,6 +47,7 @@ export default async function DynamicRoute({ params, }: { params: { id: string }
                 title: title,
             }
         })
+        revalidatePath("/dashboard")
         return redirect("/dashboard")
     }
     return (
