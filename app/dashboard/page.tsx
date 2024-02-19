@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import prisma from "../lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { File } from "lucide-react";
+import { Edit, File, Trash } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 async function getData(userId: string) {
@@ -61,6 +61,19 @@ export default async function DashboardPage() {
                                             dateStyle: 'full'
                                         }).format(new Date(item.createdAt))}
                                     </p>
+                                </div>
+                                <div className="flex gap-x-4">
+                                    <Link href={`/dashboard/new/${item.id}`}>
+                                        <Button variant="outline" size="icon">
+                                            <Edit className="w-4 h-4" />
+                                        </Button>
+                                    </Link>
+                                    <form>
+                                        <Button variant="destructive" size="icon">
+                                            <Trash className="h-4 w-4" />
+                                        </Button>
+                                    </form>
+
                                 </div>
                             </Card>
                         ))
