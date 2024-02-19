@@ -26,7 +26,7 @@ export default async function Home() {
 
             <h1 className="mt-8 text-3xl font-extrabold tracking-tight lg:text-6xl">Create Notes with ease</h1>
             <p className="max-w-xl mx-auto mt-8 text-base lg:text-xl text-secondary-foreground">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos consequatur omnis, sunt quis obcaecati suscipit sapiente excepturi.
+              Welcome to our note-taking platform! Whether you are a student, professional, or creative thinker, our intuitive interface is designed to make capturing and organizing your ideas a breeze. Lets get started on boosting your productivity!
             </p>
           </div>
           <div className="flex  justify-center max-w-sm mx-auto mt-10">
