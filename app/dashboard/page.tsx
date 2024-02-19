@@ -56,7 +56,7 @@ export default async function DashboardPage() {
                             <Card key={item.id} className="flex items-center justify-between p-4">
                                 <div>
                                     <h2 className="font-semibold text-xl text-primary">{item.title}</h2>
-                                    <p>
+                                    <p className="text-sm text-muted-foreground">
                                         {new Intl.DateTimeFormat('en-US', {
                                             dateStyle: 'full'
                                         }).format(new Date(item.createdAt))}
