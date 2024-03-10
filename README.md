@@ -33,9 +33,36 @@ https://merlin-saasnote.vercel.app/
 
 ## Features
 
-- SignUp/Login.
-- Google Auth & GitHub Auth.
-- Take Notes, edit notes & delete notes.
-- Subscribe for paid SaaS for taking notes.
-- Secured login via Kinde.
+- 🌐 nextjs App Router
 
+- 🔐 Kinde Authentication
+
+- 📧 Passwordless Auth
+
+- 🔑 OAuth (Google and GitHub)
+
+- 💿 supabase Database
+
+- 💨 prisma Orm
+
+- 🎨 Styling with tailwindcss and shadcn UI
+
+- ✅ Change the color scheme to your liking
+
+- 💵 stripe for subscription handling
+
+- 🪝 Implementation of Stripe Webhooks
+
+- 😶‍🌫️ Deployment to vercel
+
+- Pending States
+
+- Cache Revalidation
+
+- Stripe Customer Portal
+
+- Stripe Checkout page
+
+- Server side implementation
+
+- Add Notes, View Notes, Edit Notes, Delete Nodes.
