@@ -4,6 +4,10 @@
 🚀 Built a Full Stack SaaS Application using Next.js 14, Stripe, Kinde, Prisma, Supabase, and TailwindCSS.
 
 
+## Demo
+
+https://merlin-saasnote.vercel.app/
+
 ## Screenshots
 
 ![merlin](https://github.com/Shubhodeep100/Merlin_SaaS/assets/96099026/146f78af-cbf6-4162-b00c-5746d3077975)
@@ -27,9 +31,6 @@
 
 **Payment:** Stripe
 
-## Demo
-
-https://merlin-saasnote.vercel.app/
 
 ## Features
 
