@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# MerlinSaaS
 
-First, run the development server:
+🚀 Built a Full Stack SaaS Application using Next.js 14, Stripe, Kinde, Prisma, Supabase, and TailwindCSS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screenshots
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![merlin](https://github.com/Shubhodeep100/Merlin_SaaS/assets/96099026/146f78af-cbf6-4162-b00c-5746d3077975)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![Screenshot 2024-03-10 234421](https://github.com/Shubhodeep100/Merlin_SaaS/assets/96099026/d9224f08-9760-47fc-882d-1305c11366ed)
 
-## Learn More
+![Screenshot 2024-03-10 234453](https://github.com/Shubhodeep100/Merlin_SaaS/assets/96099026/ab580038-1617-43d6-aa34-a4a57626503e)
 
-To learn more about Next.js, take a look at the following resources:
+![Screenshot 2024-03-10 234515](https://github.com/Shubhodeep100/Merlin_SaaS/assets/96099026/22ca7998-c991-4d4e-8f20-59910e42d64e)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Tech Stack Used
 
-## Deploy on Vercel
+**Client:** ReactJs, NEXTjs, TypeScript, TailwindCSS, Shadcn/UI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Server:** Node, Express, Socket.Io, MongoDB, JWT Auth
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Database:** PrismaDb, Supabase
+
+**Auth:** Kinde
+
+**Payment:** Stripe
+
+## Demo
+
+https://merlin-saasnote.vercel.app/
+
+## Features
+
+- SignUp/Login.
+- Google Auth & GitHub Auth.
+- Take Notes, edit notes & delete notes.
+- Subscribe for paid SaaS for taking notes.
+- Secured login via Kinde.
+
