@@ -6,7 +6,7 @@
 
 ## Demo
 
-https://merlin-saasnote.vercel.app/
+[Demo](https://merlin-saasnote.vercel.app/)
 
 ## Screenshots
 
